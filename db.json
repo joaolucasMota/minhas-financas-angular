@@ -1,0 +1,35 @@
+{
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Moradia",
+      "descricao": "Pagamentos de Contas da Casa"
+    },
+    {
+      "id": 2,
+      "nome": "Saúde",
+      "descricao": "Plano de Saúde e Remédios"
+    },
+    {
+      "id": 3,
+      "nome": "Lazer",
+      "descricao": "Cinema, parques, praia, etc"
+    },
+    {
+      "id": 4,
+      "nome": "Salário",
+      "descricao": "Recebimento de Salário"
+    }
+  ],
+  "entradas": [
+    {
+      "nome": "nova categoria",
+      "categoriaId": 1,
+      "data": "24-07-2023",
+      "pago": true,
+      "tipo": "receita",
+      "valor": "1000",
+      "id": 1
+    }
+  ]
+}

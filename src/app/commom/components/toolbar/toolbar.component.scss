@@ -1,0 +1,22 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.menu-item{
+    margin-right: 1rem;
+    a{
+        text-decoration: none;
+        transition: all .5s ease-in-out;
+    }
+    :hover{
+            color: greenyellow;
+        }
+}
+
+.active{
+    color: greenyellow;
+}
+
+a{
+    color: black;
+}
