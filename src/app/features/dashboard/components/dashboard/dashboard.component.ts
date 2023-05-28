@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
   meses = [
     { value: 0, viewValue: 'Janeiro' },
     { value: 1, viewValue: 'Fevereiro' },
@@ -32,60 +33,57 @@ export class DashboardComponent implements OnInit {
   formDashboard!: FormGroup;
 
   constructor(private dashboardService: DashboardService,
-  private formBuilder : FormBuilder) {
-    
+    private formBuilder: FormBuilder) {
+
   }
 
   ngOnInit(): void {
-    this.criarFormulario();  
+    this.criarFormulario();
   }
 
-
   getEntradas() {
-    this.entradas= [];
+
+    this.entradas = [];
     this.saldo = 0;
     this.despesa = 0;
     this.receita = 0;
-    const payload = { 
-      mes: this.formDashboard.controls['mes'].value +1,
+
+    const payload = {
+      mes: this.formDashboard.controls['mes'].value + 1,
       ano: this.formDashboard.controls['ano'].value
-     }
-    this.dashboardService.getEntrada(payload).subscribe(entradas => {
-      this.entradas = entradas;
-      this.getReceitas();
-      this.getDespesas();
-      this.getSaldo();
-    })
+    }
+
+    this.dashboardService.getEntradas(payload)
+      .subscribe(entradas => {
+        this.entradas = entradas;
+        this.getReceitas();
+        this.getSaldo();
+      })
   }
 
   criarFormulario() {
     this.formDashboard = this.formBuilder.group({
       mes: ['', Validators.required],
-      ano: ['', Validators.required],
+      ano: ['', Validators.required]
     })
   }
 
   getReceitas() {
     this.entradas.forEach((entrada: Entrada) => {
+
       if (entrada.tipo === 'receita') {
         this.receita += parseInt(entrada.valor);
-      }
-    })
-  }
-
-  getDespesas() {
-    this.entradas.forEach((entrada: Entrada) => {
-
-      if (entrada.tipo === 'despesa') {
+      } else {
         this.despesa += parseInt(entrada.valor);
       }
     })
   }
 
+
   getSaldo() {
+
     this.saldo = this.receita - this.despesa;
-    return this.saldo
-    
   }
+
 
 }
